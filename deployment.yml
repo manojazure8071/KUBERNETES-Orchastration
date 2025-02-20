@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: web-deploy-recreate
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nginx-app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: nginx-app
+    spec:
+      containers:
+      - name: web-nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+
+# kubectl create deploy web-deploy --image=nginx --replicas=5
