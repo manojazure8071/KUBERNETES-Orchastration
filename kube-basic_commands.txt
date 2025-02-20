@@ -1,0 +1,62 @@
+kubectKubeadm Cluster Setup:-
+
+Link-1:
+https://docs.docker.com/engine/install/ubuntu/ 
+
+Link-2:
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
+Link-3:
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+
+Link-4:
+https://github.com/rajch/weave#using-weave-on-kubernetes
+
+- sudo swapoff -a
+- kubectl version
+- kubeadm version
+- kubelet --version
+
+sudo rm -rf /etc/containerd/config.toml
+sudo systemctl restart containerd
+
+Link-4
+https://github.com/rajch/weave#using-weave-on-kubernetes
+
+Kubernetes Basic commands:
+
+- kubectl get nodes
+- kubectl get ns
+- kubectl get all -n kube-system
+- kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+- kubectl describe kube-vm
+- kubectl describe node kube-vm
+- alias kb=kubectl
+- kb get all -n kube-system
+- kubectl run --image=nginx nginx-webapp
+- kb get pods
+- kb logs pod_name {--all-containers for logs from all containers}
+- kb delete pod nginx
+- kb get pods -o wide
+- kb expose -h
+- kb expose pod nginx-webapp --port=80 --name=nginx-svc --type=NodePort
+- kb get all
+- wget http://localhost:32467
+- vi index.html
+- kb cp index.html nginx-webapp:/usr/share/nginx/html
+- kubectl create deployment --image-nginx nginx --replicas=1 
+- kubectl expose deployment nginx --port 80
+- kubectl scale deployment nginx --replicas=5
+
+--------
+
+# Untained Master Node
+- kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+
+--------
+
+# Generating token
+- kubeadm token generate
+
+# Creating join-command
+- kubeadm token create hp9b0k.1g9tqz8vkf78ucwf --print-join-command
